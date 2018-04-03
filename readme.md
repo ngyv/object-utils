@@ -52,6 +52,19 @@ objectUtils.difference(anotherCar, car);
 //=> {
 //     type: ['Mediocre', 'Fancy'],
 //   }
+
+objectUtils.mergeObject({ ate: true }, 'string', 10, [], { hashbrown: 'breakfast' });
+//=> { ate: true, hashbrown: 'breakfast' }
+
+
+let objectFunction = { sing() { this.lyrics = 'Hello,'; } };
+let anotherObjectFunction = { sing() { this.lyrics += " it's me";  } };
+const mergedObjectFunctions = objectUtils.mergeObject(objectFunction, anotherObjectFunction);
+
+mergedObjectFunctions.sing();
+mergedObjectFunctions.lyrics;
+//=> "Hello, it's me"
+//=>
 ```
 
 
