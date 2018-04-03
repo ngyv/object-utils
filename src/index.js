@@ -1,4 +1,4 @@
-import { types, identify, isEqual } from '@ngyv/prop-utils';
+import { types, identify, isEqual, compareType } from '@ngyv/prop-utils';
 import camelcase from 'lodash.camelcase';
 import intersection from 'lodash.intersection';
 
@@ -78,6 +78,35 @@ const difference = function (objA, objB) {
   }, {});
 };
 
+/**
+ * Merges objects that stacks object functions with same key instead of overriding the previous
+ * @return {[object]}
+ */
+const mergeObject = function () {
+  let newObject = {};
+  [...arguments].forEach((toMergeObject) => {
+    // only want to merge objects
+    const toMergeObjectType = identify(toMergeObject);
+    if (toMergeObjectType !== types.object) { return; }
+
+    Object.keys(toMergeObject).forEach((option) => {
+      const newObjectPropertyType = identify(newObject[option]);
+      const toMergePropertyType = identify(toMergeObject[option]);
+
+      if (newObjectPropertyType === types.function && toMergePropertyType === types.function) {
+        const originalFunc = newObject[option];
+        newObject[option] = function(...args) {
+          originalFunc.call(newObject, ...args); // so that the function can access the whole object
+          toMergeObject[option].call(newObject, ...args);
+        };
+      } else {
+        newObject[option] = toMergeObject[option];
+      }
+    });
+  });
+  return newObject;
+}
+
 export default {
   get,
   setKeyString,
@@ -85,5 +114,6 @@ export default {
   set,
   pushObject,
   pluckSubset,
-  difference
+  difference,
+  mergeObject
 }

@@ -25,7 +25,7 @@
     ]
   },
   "dependencies": {
-    "@ngyv/prop-utils": "^0.1.0",
+    "@ngyv/prop-utils": "^1.1.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.intersection": "^4.4.0"
   },
