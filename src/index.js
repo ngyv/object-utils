@@ -19,10 +19,10 @@ const setKeyString = function (obj, keyString, value, delimiter = '.') {
 };
 
 const setObject = function (obj, setObj, keyFormatter = camelcase) {
-  Object.keys(setObj).forEach(key => {
+  return Object.keys(setObj).reduce((obj, key) => {
     obj[keyFormatter(key)] = setObj[key];
-  });
-  return obj;
+    return obj;
+  }, obj);
 };
 
 const set = function (obj, keyStringObject, values) {

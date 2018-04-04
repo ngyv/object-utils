@@ -70,7 +70,7 @@ test('Set value on object with object', t => {
     name: 'Oneke',
     age: 19,
   }
-  set(obj, person2);
+  t.is(set(obj, person2), obj, 'Returns source object');
   t.is(obj.info.hobby, person2.info.hobby, 'Sets value without "values"');
   set(obj, person2, values);
   t.is(obj.info, undefined, 'Sets value using "values"');
