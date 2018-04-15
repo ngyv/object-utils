@@ -1,4 +1,4 @@
-# object-utils [![Build Status](https://travis-ci.org/ngyv/object-utils.svg?branch=master)](https://travis-ci.org/ngyv/object-utils)
+# object-utils [![Build Status](https://travis-ci.org/ngyv/object-utils.svg?branch=master)](https://travis-ci.org/ngyv/object-utils)[![npm download](https://img.shields.io/npm/dt/@ngyv/object-utils.svg)](https://www.npmjs.com/package/@ngyv/object-utils) 
 
 > Object getter setters
 
